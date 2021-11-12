@@ -18,7 +18,7 @@ from tifffile import imread, imsave
 import glob, os, struct, string, tqdm
 from tqdm.utils import _term_move_up
 import sys
-sys.path.append(os.path.join('funcs'))
+sys.path.append(os.path.join('..','funcs'))
 from _00_compile_PE_images_TL import compilePEimages_TL
 
 ##########################################################################################

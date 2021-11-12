@@ -19,7 +19,7 @@ from skimage.io import imread, imsave
 import glob, os, struct, string, tqdm
 from tqdm.utils import _term_move_up
 import sys, time
-sys.path.append(os.path.join('funcs'))
+sys.path.append(os.path.join('..','funcs'))
 from _00_compile_PE_images_Conditions import compilePEimages_condition
 
 ##########################################################################################
