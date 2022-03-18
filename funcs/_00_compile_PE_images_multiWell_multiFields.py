@@ -8,7 +8,7 @@ from imagej_fun import imagej_metadata_tags, make_lut
 ###############################################################################
 
 
-def compilePEimages_condition(path, conditions, channel_order, luts_name):
+def compilePEimages_multiWell_multiFields(path, channel_order, luts_name):
     # find all tiff files in the folder
     flist = glob.glob(os.path.join(path,'*.tiff'))
     flist.sort()
@@ -23,12 +23,11 @@ def compilePEimages_condition(path, conditions, channel_order, luts_name):
     pbar = tqdm.tqdm(pos)
     for p in pbar:
         well = p[4:6]+d[int(p[1:3])]
-        cond = conditions[int(p[4:6])-1][int(p[1:3])-1]
 
-        pbar.set_description(p + ' ' + well + ' ' + cond)
+        pbar.set_description(p + ' ' + well)
         pbar.update()
         
-        outpath = os.path.join(os.path.split(path)[0],'compiled',cond)
+        outpath = os.path.join(os.path.split(path)[0],'compiled')
         if not os.path.exists(outpath):
             os.makedirs(outpath)
 
@@ -84,22 +83,6 @@ if __name__=='__main__':
                     '20200925_NG_h2bmCherry_GPIGFP_096hpa_2D',
                     'Images'
                     )
-
-    # conditions should be arranged by column, for every one of thew 12 columns, give the condition name
-    conditions = [
-        'gastr_150cells',
-        'gastr_150cells',
-        'gastr_150cells',
-        'gastr_150cells',
-        'gastr_300cells',
-        'gastr_300cells',
-        'gastr_300cells',
-        'gastr_300cells',
-        'gastr_450cells',
-        'gastr_450cells',
-        'gastr_450cells',
-        'gastr_450cells'
-        ]
 
     # this is to, for instance, arrange BF in first channel and GFP in second channel
     # available LUTS: gray, red, green, blue, magenta, cyan, yellow
